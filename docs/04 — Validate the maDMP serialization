@@ -1,0 +1,81 @@
+# 04 — Validate the maDMP serialization
+
+This step proves the schema works end-to-end: the values **exported from a
+Dataverse record** serialize to an **RDA DMP Common Standard v1.1** instance that
+passes the official JSON schema. The script reads a `dataverse_json` export, so a
+PASS reflects an actual repository record, not a hand-built object.
+
+A sample export is committed (`validation/sample-export-MHN3LM.dataverse_json`),
+so this step works with no running instance. To validate your own record, export
+it live (see "Use a real export" below).
+
+## Step 1 — Install the dependency
+
+```bash
+cd validation
+pip install jsonschema      # or use a virtualenv
+```
+
+## Step 2 — Get the official schema
+
+Download `maDMP-schema-1.1.json` from the RDA DMP Common Standard project and
+save it in this `validation/` folder as `madmp-schema-1.1.json`. See
+`validation/README.md` for the source. (Not bundled — it carries its own license.)
+
+## Step 3 — Run it
+
+```bash
+python validate_madmp.py            # uses the committed sample export
+```
+
+Expected output:
+
+```
+Input export : sample-export-MHN3LM.dataverse_json
+Datasets: 1 | distributions: 1 | cost items: 1
+Serialized instance written to: .../madmp_MHN3LM.json
+VALIDATION: PASS - instance conforms to maDMP-schema-1.1.json
+```
+
+The serialized maDMP is written to `madmp_MHN3LM.json` for inspection.
+
+## Use a real export (recommended once you've done step 03)
+
+On your running instance, with the record deposited and the EDMB values entered
+and saved, export it and validate that:
+
+```bash
+curl "http://localhost:8080/api/datasets/export?exporter=dataverse_json&persistentId=doi:10.7910/DVN/MHN3LM" \
+    -o my-export.dataverse_json
+python validate_madmp.py my-export.dataverse_json
+```
+
+This is the live version of the round-trip: repository record → export →
+crosswalk → schema-valid maDMP, with no hand-entered values in between.
+
+## What it demonstrates (and what it doesn't)
+
+- **Demonstrates:** the values held in a real repository record assemble into a
+  *structurally conformant* maDMP v1.1 document — types, required properties, and
+  controlled vocabularies all satisfied. Only the single **published** dataset
+  (the CC0 code) is emitted, matching what is actually deposited.
+- **Does not (yet) demonstrate:** semantic *round-trip* fidelity (re-importing
+  the maDMP back into the block without loss). That remains future work.
+
+## How values are read
+
+The script flattens `data.datasetVersion.metadataBlocks.citation` and
+`...metadataBlocks.edmb` from the export into field lookups, then applies the
+crosswalk in `crosswalk/edmb_to_madmp_forward.csv`. To change the plan, edit the
+export file (or, better, edit the values in Dataverse and re-export) — there are
+no values hard-coded in the script.
+
+## Common issues
+
+- **`Schema not found`** — place `madmp-schema-1.1.json` in `validation/` (step 2).
+- **`Export file not found`** — pass a valid path, or rely on the committed sample.
+- **`No 'edmb' metadata block found`** — your export has no EDMB block; enter
+  EDMB values on the dataset and re-export.
+- **`VALIDATION: FAIL` with a `required` error** — a maDMP *required* property is
+  missing (e.g. `dmp_id`/`dataset_id` need both `identifier` and `type`;
+  `created`/`modified` need date-time strings). The error path shows where.

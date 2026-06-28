@@ -1,4 +1,4 @@
-# EDMB# EDMB — Extended Data Management Block for Dataverse
+EDMB — Extended Data Management Block for Dataverse
 
 A deployable Dataverse metadata block (`edmb`) that lets a research-data
 repository store the **data-management-plan (DMP) content** a repository's
@@ -10,7 +10,7 @@ This repository accompanies the paper *"Technological Interoperability for
 Machine-actionable Data Management Plans"* and contains everything needed to
 reproduce the proof of concept on your own machine:
 
-1. Spin up a containerized Harvard Dataverse instance in Docker.
+1. Start a containerized Harvard Dataverse instance in Docker.
 2. Install and enable the `edmb` metadata block on that instance.
 3. Serialize a populated block to RDA maDMP v1.1 JSON and validate it against
    the official schema.

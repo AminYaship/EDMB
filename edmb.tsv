@@ -1,5 +1,5 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	edmb	edmb	Extended DMP Metadata Block	https://w3id.org/fiodmp#
+	edmb	edmb	Extended Data Management Block	https://w3id.org/fiodmp#
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	showabovefold	required	parent	metadatablock_id
 	expectedDataTypes	Expected Data Types	Key types of scientific data anticipated and the repository where each will be managed and shared (NIH 2026 DMS Plan, Element 6)		NONE	1		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		edmb
 	expectedDataType	Expected Data Type	Type of scientific data, including species and modality if known	e.g. human genomic data; rat fMRI data	TEXT	2		FALSE	FALSE	FALSE	FALSE	FALSE	TRUE	expectedDataTypes	edmb

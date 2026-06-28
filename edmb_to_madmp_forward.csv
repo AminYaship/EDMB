@@ -1,0 +1,75 @@
+category,edmb_field,madmp_v1_1_property,score,note
+Access and Sharing,dataAccessLevel,distribution.data_access,1.0,Direct: open/shared/closed
+Access and Sharing,licenseURL,distribution.license.license_ref,1.0,Direct: URL type
+Access and Sharing,embargoEndDate,distribution.license.start_date,0.75,Official maDMP convention
+Access and Sharing,embargoApplied,(implied by license.start_date),0.5,Flag has no dedicated slot
+Access and Sharing,reuseConditions,distribution.license (partial),0.5,Non-license terms still free text
+Access and Sharing,sharingRestrictions,(data_access + descriptions),0.5,No dedicated text in maDMP
+Access and Sharing,accessContactName,dmp.contact.name (partial),0.5,maDMP contact is the DMP contact
+Access and Sharing,accessContact,dmp.contact.mbox (partial),0.5,Format matches; purpose differs
+Access and Sharing,accessRequestProcedure,(distribution.description),0.25,No dedicated field
+Cost,costTitle,dmp.cost.title,1.0,Direct: title of the cost item
+Cost,costDescription,dmp.cost.description,1.0,Direct: free-text description of the cost
+Cost,costValue,dmp.cost.value,1.0,Direct: numeric amount
+Cost,costCurrencyCode,dmp.cost.currency_code,1.0,Direct: ISO 4217 currency code
+DMP Lifecycle,dmpIdentifier,dmp.dmp_id,1.0,Direct
+DMP Lifecycle,dmpCreationDate,dmp.created,1.0,Direct
+DMP Lifecycle,dmpLastUpdated,dmp.modified,1.0,Direct
+DMP Lifecycle,dataStewardORCID,dmp.contributor.contributor_id,1.0,Direct: identifier with type 'orcid'
+DMP Lifecycle,dataSteward,dmp.contributor + role 'Data Steward',0.75,Strong
+DMP Lifecycle,responsibleOrganizationROR,dmp.contributor.contributor_id (type 'other'),0.5,ROR rides in contributor_id with type=other
+DMP Lifecycle,dmpVersion,(dmp.modified),0.25,No version field in maDMP
+DMP Lifecycle,relatedDMP,(description),0.25,No DMP-to-DMP relation
+DMP Lifecycle,responsibleOrganization,(contributor person-oriented),0.25,No organization entity in maDMP 1.1
+DMP Lifecycle,dmpStatus,,0.0,No status concept
+DMP Lifecycle,dmpReviewDate,,0.0,No review-date concept
+DMP Lifecycle,dmpVisibility,,0.0,Administrative; intentionally unmapped
+Ethics Information,ethicsApprovalURL,dmp.ethical_issues_report,1.0,Direct: URL type matches the URI expectation
+Ethics Information,ethicalRestrictions,dmp.ethical_issues_description,0.75,Strong fit
+Ethics Information,ethicsApproval,dmp.ethical_issues_exist,0.5,Approval status vs existence of issues
+Ethics Information,consentProcedure,dmp.ethical_issues_description,0.5,Free-text
+Ethics Information,humanSubjectsResearch,dataset.personal_data (proxy),0.5,Closest structured proxy
+Ethics Information,ethicsCommittee,(ethical_issues_description),0.25,No dedicated field
+Ethics Information,ethicsApprovalReference,(text identifier),0.25,Reference number has no slot; URL carried separately
+Ethics Information,ethicsApprovalDate,,0.25,No ethics date in maDMP
+Ethics Information,consentType,(ethical_issues_description),0.25,No structured consent field
+Ethics Information,broadConsentForSharing,(ethical_issues_description),0.25,Informs data_access decisions but no slot
+Ethics Information,animalResearch,(ethical_issues_description),0.25,No structured field
+Expected Data Types,plannedRepository,host.title,1.0,Direct: repository name
+Expected Data Types,plannedRepositoryURL,host.url,1.0,Direct: repository URL
+Expected Data Types,expectedDataType,dataset.type / dataset.title,0.75,Descriptive data type fits dataset.type
+FAIR and Reuse,metadataStandard,dataset.metadata.metadata_standard_id,1.0,Direct; name-or-URL guidance
+FAIR and Reuse,persistentIdentifierScheme,host.pid_system,1.0,"Direct; doi, handle, ark, purl, urn, other"
+FAIR and Reuse,dataQualityAssurance,dataset.data_quality_assurance,1.0,Direct
+FAIR and Reuse,toolsAndSoftware,dataset.technical_resource,0.75,Strong: name+description items vs one TEXTBOX
+FAIR and Reuse,interoperabilityStandards,dataset.metadata (partial),0.5,Scope clarified vs metadataStandard
+FAIR and Reuse,documentationURL,(no documentation field),0.25,No maDMP slot; exportable as related link
+FAIR and Reuse,controlledVocabularyUsed,(metadata_standard_id stretch),0.25,Vocabularies not first-class in maDMP
+NIH Data Sharing,participantProtections,security_and_privacy + personal_data,0.5,Substantiated by privacy measures and personal-data flag
+NIH Data Sharing,maximumAppropriateSharing,(data_access inferable),0.25,NIH-specific; loosely inferable from distribution.data_access
+NIH Data Sharing,sharingByPublication,(dataset.issued partial),0.25,"Timing commitment; dataset.issued records a date, not a pledge"
+NIH Data Sharing,retentionPerPolicies,(available_until related),0.25,Policy-compliance assertion has no maDMP slot
+NIH Data Sharing,gdsRepositorySharing,,0.0,NIH GDS Policy specific
+NIH Data Sharing,gdsInstitutionalCertification,,0.0,NIH GDS Policy specific
+Preservation Information,preservationPlan,dataset.preservation_statement,1.0,Direct
+Preservation Information,availableUntil,distribution.available_until,1.0,Direct: ISO 8601 date
+Preservation Information,preservationFormat,distribution.format,1.0,Direct: IANA media type + repeatable
+Preservation Information,backupFrequency,host.backup_frequency,1.0,Direct
+Preservation Information,repositoryCertification,host.certified_with,1.0,"Direct; coretrustseal, iso16363, din31644, wds, trac"
+Preservation Information,retentionPeriodYears,distribution.available_until (derivable),0.75,Integer years converts to an end date
+Preservation Information,storageInfrastructure,host.description + storage_type,0.75,Strong fit
+Preservation Information,backupStrategy,host.backup_type,0.75,Strong fit
+Preservation Information,geographicBackupLocation,host.geo_location,0.75,ISO 3166; backup-vs-host nuance remains
+Preservation Information,checksumVerification,(host.description),0.25,maDMP 1.1 has no fixity field
+Privacy and Compliance,personalDataIncluded,dataset.personal_data,1.0,Direct; identical CV (yes/no/unknown)
+Privacy and Compliance,sensitiveData,dataset.sensitive_data,1.0,Direct
+Privacy and Compliance,specialCategoryData,dataset.sensitive_data (subset),0.75,GDPR Art. 9 distinction collapses into sensitive_data
+Privacy and Compliance,anonymizationMethod,dataset.security_and_privacy,0.75,Strong fit as privacy measure
+Privacy and Compliance,privacyRiskAssessment,dataset.security_and_privacy,0.75,Strong fit
+Privacy and Compliance,gdprCompliance,dataset.security_and_privacy,0.5,Titled security/privacy item
+Privacy and Compliance,legalBasisForProcessing,dataset.security_and_privacy,0.5,CV improves validation; free-slot in maDMP
+Privacy and Compliance,dataController,dmp.contributor + role,0.5,Role string uncontrolled; org vs person mismatch
+Privacy and Compliance,dataProcessor,dmp.contributor + role,0.5,Same as controller
+Privacy and Compliance,crossBorderTransfer,host.geo_location (proxy),0.5,Storage country implies but does not state transfer
+Related Resources,relatedResourceIdentifier,(dataset_id only),0.25,maDMP 1.1 lacks related identifiers; v2 is DataCite-ready
+Related Resources,relatedResourceRelationType,,0.0,No relation-type concept in maDMP 1.1

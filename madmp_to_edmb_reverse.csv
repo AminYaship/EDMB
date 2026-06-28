@@ -1,0 +1,38 @@
+madmp_v1_1_property,how_satisfied,status
+dataset.data_quality_assurance,dataQualityAssurance,Covered
+"dataset.metadata (metadata_standard_id, language)",metadataStandard,Covered
+dataset.personal_data,personalDataIncluded - identical CV,Covered
+dataset.preservation_statement,preservationPlan,Covered
+"dataset.security_and_privacy (title, description)","privacyRiskAssessment, anonymizationMethod, gdprCompliance, legalBasisForProcessing",Covered
+dataset.sensitive_data,sensitiveData - identical CV,Covered
+"dataset.technical_resource (name, description)",toolsAndSoftware,Covered
+dataset.type,expectedDataType,Covered
+distribution.available_until,availableUntil (+ retentionPeriodYears),Covered
+distribution.data_access,dataAccessLevel - identical CV,Covered
+distribution.format,preservationFormat (IANA media types),Covered
+"distribution.license (license_ref, start_date)",licenseURL + embargoEndDate,Covered
+"dmp.cost (title, description, value, currency_code)","costTitle, costDescription, costValue, costCurrencyCode",Covered
+dmp.created / dmp.modified,"dmpCreationDate, dmpLastUpdated",Covered
+dmp.dmp_id (identifier + type),dmpIdentifier,Covered
+dmp.ethical_issues_description,"ethicalRestrictions, consentProcedure",Covered
+dmp.ethical_issues_report,ethicsApprovalURL,Covered
+host.backup_frequency / backup_type,backupFrequency + backupStrategy,Covered
+host.certified_with,repositoryCertification - full enum coverage,Covered
+host.pid_system,persistentIdentifierScheme,Covered
+host.title / url,plannedRepository + plannedRepositoryURL,Covered
+"dmp.contact (name, mbox, contact_id)",accessContactName + accessContact; no contact ORCID,Partial
+"dmp.contributor (name, mbox, role, contributor_id)",dataSteward + dataStewardORCID; dataController/dataProcessor as roles,Partial
+dmp.ethical_issues_exist,ethicsApproval (partial semantic match),Partial
+host.description / storage_type,storageInfrastructure,Partial
+host.geo_location,geographicBackupLocation (backup location only),Partial
+dataset.title / description / keyword / language / issued,Dataverse citation block,Citation block
+dmp.language,Dataverse citation block (Language),Citation block
+"dmp.project (title, description, start, end)",Dataverse citation block (project/grant information),Citation block
+"dmp.project.funding (funder_id, grant_id, funding_status)",Dataverse citation block (Grant Information),Citation block
+dmp.title / dmp.description,"Dataverse citation block (Title, Description)",Citation block
+dataset.dataset_id,Dataverse-assigned DOI of the dataset record,Dataverse native
+distribution.access_url / download_url,Dataverse dataset/file URLs,Dataverse native
+distribution.byte_size,Dataverse file metadata,Dataverse native
+distribution.title / description,Dataverse file metadata at deposit,Dataverse native
+host.availability,Not modelled,Not covered
+host.support_versioning,Not modelled,Not covered

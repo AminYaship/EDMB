@@ -1,0 +1,18 @@
+# Validation: official schema is downloaded by the user, not committed
+validation/madmp-schema-1.1.json
+# Generated output + any real exports the user pulls (keep the committed sample)
+validation/madmp_MHN3LM.json
+validation/my-export.dataverse_json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Dataverse local stack (in case someone runs compose inside the repo)
+data/
+docker-dev-volumes/
+
+# OS
+.DS_Store

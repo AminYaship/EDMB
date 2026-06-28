@@ -1,0 +1,366 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI
+	edmb	edmb	Extended DMP Metadata Block	https://w3id.org/fiodmp#
+#datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	showabovefold	required	parent	metadatablock_id
+	expectedDataTypes	Expected Data Types	Key types of scientific data anticipated and the repository where each will be managed and shared (NIH 2026 DMS Plan, Element 6)		NONE	1		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		edmb
+	expectedDataType	Expected Data Type	Type of scientific data, including species and modality if known	e.g. human genomic data; rat fMRI data	TEXT	2		FALSE	FALSE	FALSE	FALSE	FALSE	TRUE	expectedDataTypes	edmb
+	plannedRepository	Planned Repository	Established repository (or an example) where this data type may be deposited	e.g. dbGaP, GEO, Zenodo	TEXT	3		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	expectedDataTypes	edmb
+	plannedRepositoryURL	Planned Repository URL	URL of the repository (re3data entry preferred)	https://www.re3data.org/repository/...	URL	4		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	expectedDataTypes	edmb
+	nihDataSharing	NIH Data Sharing Compliance	Assertions matching the NIH 2026 DMS Plan format (NOT-OD-26-046). If any answer is No, explain in Sharing Restrictions or Ethical Restrictions (Element 4)		NONE	5		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	maximumAppropriateSharing	Maximum Appropriate Sharing	Will there be maximum appropriate sharing of scientific data underlying peer-reviewed publications and other findings? (Element 1)		TEXT	6		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	nihDataSharing	edmb
+	sharingByPublication	Sharing by Publication	Will data underlying publications be shared by publication time, or for other findings by end of the period of performance? (Element 2)		TEXT	7		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	nihDataSharing	edmb
+	retentionPerPolicies	Retention per Policies	Will shared data be available at least as long as required by repository and/or journal policies? (Element 3)		TEXT	8		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	nihDataSharing	edmb
+	participantProtections	Participant Protections	If human participant data will be shared, will privacy, rights and confidentiality be protected per NOT-OD-22-213, including access controls where needed? (Element 5)		TEXT	9		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	nihDataSharing	edmb
+	gdsRepositorySharing	GDS Repository Sharing	For studies under the NIH Genomic Data Sharing Policy: will all large-scale human genomic data be shared in an NIH-designated repository on the accelerated timelines? (Element 7a)		TEXT	10		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	nihDataSharing	edmb
+	gdsInstitutionalCertification	GDS Institutional Certification	Do you anticipate meeting the Institutional Certification expectations of the GDS Policy (NOT-OD-14-124, IV.C.5)? (Element 7b)		TEXT	11		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	nihDataSharing	edmb
+	ethicsInformation	Ethics Information	Ethics and research compliance information		NONE	12		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	ethicsApproval	Ethics Approval	Has ethics approval been obtained?		TEXT	13		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	ethicsCommittee	Ethics Committee	Name of approving ethics committee		TEXT	14		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	ethicsApprovalReference	Ethics Approval Reference	Approval identifier/reference number		TEXT	15		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	ethicsApprovalURL	Ethics Approval URL	Link to the ethics approval or ethics report documentation (exported as maDMP ethical_issues_report)		URL	16		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	ethicsApprovalDate	Ethics Approval Date	Date ethics approval was granted		DATE	17		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	consentProcedure	Consent Procedure	Description of participant consent procedures, including whether consent language permits data sharing		TEXTBOX	18		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	consentType	Consent Type	Type of consent obtained		TEXT	19		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	broadConsentForSharing	Broad Consent for Sharing	Does the consent obtained permit broad sharing/reuse of the data?		TEXT	20		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	humanSubjectsResearch	Human Subjects Research	Does the study involve human subjects?		TEXT	21		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	animalResearch	Animal Research	Does the study involve animals?		TEXT	22		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	ethicalRestrictions	Ethical Restrictions	Ethical factors limiting data sharing or reuse (NIH Element 4; aim for 300 words max together with Sharing Restrictions)		TEXTBOX	23		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	ethicsInformation	edmb
+	privacyAndCompliance	Privacy and Compliance	Privacy and regulatory compliance information		NONE	24		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	personalDataIncluded	Personal Data Included	Does the dataset contain personal data?		TEXT	25		TRUE	TRUE	FALSE	TRUE	FALSE	TRUE	privacyAndCompliance	edmb
+	sensitiveData	Sensitive Data Included	Does the dataset contain sensitive data?		TEXT	26		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	specialCategoryData	Special Category Data	Does the dataset contain special category personal data (GDPR Art. 9)?		TEXT	27		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	gdprCompliance	GDPR Compliance	GDPR compliance status		TEXT	28		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	privacyAndCompliance	edmb
+	legalBasisForProcessing	Legal Basis for Processing	Legal basis for processing personal data (GDPR Art. 6)		TEXT	29		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	anonymizationMethod	Anonymization Method	Description of anonymization or pseudonymization applied before sharing		TEXTBOX	30		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	dataController	Data Controller	Entity responsible for data control	Organization name (add ROR URI if available)	TEXT	31		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	dataProcessor	Data Processor	Entity processing the data	Organization name (add ROR URI if available)	TEXT	32		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	crossBorderTransfer	Cross Border Transfer	Will data be transferred internationally?		TEXT	33		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	privacyRiskAssessment	Privacy Risk Assessment	Description of privacy risks and mitigations		TEXTBOX	34		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	privacyAndCompliance	edmb
+	accessAndSharing	Access and Sharing	Data access and sharing information		NONE	35		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	dataAccessLevel	Data Access Level	Access level for the dataset (maDMP data_access). For embargoes use the Embargo fields below		TEXT	36		TRUE	TRUE	FALSE	TRUE	FALSE	TRUE	accessAndSharing	edmb
+	accessRequestProcedure	Access Request Procedure	Procedure for requesting access to restricted data		TEXTBOX	37		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	embargoApplied	Embargo Applied	Is an embargo applied?		TEXT	38		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	embargoEndDate	Embargo End Date	Date embargo expires. Required when Embargo Applied = Yes; exported as maDMP license start_date		DATE	39		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	licenseURL	License	URI of the license governing dataset use	https://creativecommons.org/licenses/by/4.0/ or https://spdx.org/licenses/...	URL	40		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	reuseConditions	Reuse Conditions	Conditions for reuse not expressed in the license		TEXTBOX	41		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	sharingRestrictions	Sharing Restrictions	Legal or technical factors limiting sharing (NIH Element 4; aim for 300 words max together with Ethical Restrictions)		TEXTBOX	42		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	accessContactName	Access Contact Name	Name of the contact person for access requests		TEXT	43		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	accessContact	Access Contact	Email contact for access requests		EMAIL	44		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	accessAndSharing	edmb
+	preservationInformation	Preservation Information	Long-term preservation information		NONE	45		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	preservationPlan	Preservation Plan	Long-term preservation strategy (maDMP preservation_statement)		TEXTBOX	46		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	retentionPeriodYears	Retention Period (Years)	Planned preservation period in years	e.g. 10	INT	47		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	availableUntil	Available Until	Date until which the data will remain available (maDMP available_until)		DATE	48		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	preservationFormat	Preservation Format	File format used for preservation	IANA media type, e.g. text/csv	TEXT	49		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	storageInfrastructure	Storage Infrastructure	Description of storage environment during and after the project		TEXTBOX	50		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	backupStrategy	Backup Strategy	Description of backup procedures		TEXTBOX	51		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	backupFrequency	Backup Frequency	Frequency of backups (maDMP backup_frequency)		TEXT	52		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	checksumVerification	Checksum Verification	Method used for integrity checking		TEXT	53		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	repositoryCertification	Repository Certification	Certification status of the preservation repository (maDMP certified_with)		TEXT	54		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	geographicBackupLocation	Geographic Backup Location	Country where backup storage is located	ISO 3166-1 alpha-2 code, e.g. FI	TEXT	55		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	preservationInformation	edmb
+	fairAndReuse	FAIR and Reuse	FAIR and reuse-related information		NONE	56		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	metadataStandard	Metadata Standard	Metadata standard used. Give name or URL; see the RDA Metadata Standards Catalog	e.g. Dublin Core, https://rdamsc.bath.ac.uk/...	TEXT	57		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	persistentIdentifierScheme	Persistent Identifier Scheme	PID scheme used for the data (maDMP pid_system)		TEXT	58		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	documentationURL	Documentation URL	Link to data documentation (codebook, README, protocol)		URL	59		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	dataQualityAssurance	Data Quality Assurance	Data quality assurance procedures (maDMP data_quality_assurance)		TEXTBOX	60		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	interoperabilityStandards	Interoperability Standards	File or exchange standards beyond metadata schemas (e.g. HL7 FHIR, NetCDF). Use Metadata Standard for metadata schemas		TEXT	61		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	controlledVocabularyUsed	Controlled Vocabulary Used	Vocabulary or ontology used in the data or metadata	Name or URI (see BARTOC)	TEXT	62		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	toolsAndSoftware	Tools and Software	Equipment, tools, software or code needed to access and use the data (maDMP technical_resource)		TEXTBOX	63		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	fairAndReuse	edmb
+	relatedResources	Related Resources	Resources related to this DMP or dataset (publications, protocols, other datasets)		NONE	64		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		edmb
+	relatedResourceIdentifier	Related Resource Identifier	Persistent identifier or URL of the related resource	DOI, Handle, or URL	TEXT	65		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	relatedResources	edmb
+	relatedResourceRelationType	Relation Type	Relation of this dataset/DMP to the resource (DataCite relationType)		TEXT	66		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	relatedResources	edmb
+	dmpLifecycle	DMP Lifecycle	Data Management Plan lifecycle information		NONE	67		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		edmb
+	dmpIdentifier	DMP Identifier	Persistent identifier of the DMP (maDMP dmp_id)	e.g. https://doi.org/10.48321/D1XXXX	TEXT	68		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dmpVersion	DMP Version	Version of the DMP		TEXT	69		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dmpStatus	DMP Status	Current DMP status		TEXT	70		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	dmpLifecycle	edmb
+	dmpCreationDate	DMP Creation Date	Date DMP was created (maDMP created)		DATE	71		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dmpLastUpdated	DMP Last Updated	Date DMP was last updated (maDMP modified)		DATE	72		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dmpReviewDate	DMP Review Date	Date DMP should be reviewed		DATE	73		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dmpVisibility	DMP Visibility	Is the DMP public or private? (administrative; excluded from standard exports)		TEXT	74		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	relatedDMP	Related DMP	URL of a related DMP		URL	75		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dataSteward	Data Steward	Person responsible for data stewardship (maDMP contributor, role Data Steward)		TEXT	76		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	dataStewardORCID	Data Steward ORCID	ORCID iD of the data steward	https://orcid.org/0000-0000-0000-0000	URL	77		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	responsibleOrganization	Responsible Organization	Organization responsible for the DMP		TEXT	78		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	responsibleOrganizationROR	Responsible Organization ROR	ROR identifier of the responsible organization	https://ror.org/...	URL	79		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	dmpLifecycle	edmb
+	cost	Cost	Costs associated with data management, storage, and long-term preservation (maDMP cost)		NONE	80		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		edmb
+	costTitle	Cost Title	Title of the cost item (maDMP cost.title)	e.g. Storage and long-term preservation	TEXT	81		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	cost	edmb
+	costDescription	Cost Description	Free-text description of the cost (maDMP cost.description)		TEXTBOX	82		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	cost	edmb
+	costValue	Cost Value	Monetary amount of the cost (maDMP cost.value)	e.g. 1500.00	FLOAT	83		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	cost	edmb
+	costCurrencyCode	Cost Currency Code	ISO 4217 currency code for the cost value (maDMP cost.currency_code)		TEXT	84		FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	cost	edmb
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder
+	maximumAppropriateSharing	Yes	yes	0
+	maximumAppropriateSharing	No	no	1
+	sharingByPublication	Yes	yes	0
+	sharingByPublication	No	no	1
+	retentionPerPolicies	Yes	yes	0
+	retentionPerPolicies	No	no	1
+	participantProtections	Yes	yes	0
+	participantProtections	No	no	1
+	participantProtections	Not Applicable	na	2
+	gdsRepositorySharing	Yes	yes	0
+	gdsRepositorySharing	No	no	1
+	gdsRepositorySharing	Not Applicable	na	2
+	gdsInstitutionalCertification	Yes	yes	0
+	gdsInstitutionalCertification	No	no	1
+	gdsInstitutionalCertification	Not Applicable	na	2
+	ethicsApproval	Yes	yes	0
+	ethicsApproval	No	no	1
+	ethicsApproval	Pending	pending	2
+	ethicsApproval	Not Required	notrequired	3
+	consentType	Written	written	0
+	consentType	Oral	oral	1
+	consentType	Electronic	electronic	2
+	consentType	Waived	waived	3
+	broadConsentForSharing	Yes	yes	0
+	broadConsentForSharing	No	no	1
+	broadConsentForSharing	Unknown	unknown	2
+	humanSubjectsResearch	Yes	yes	0
+	humanSubjectsResearch	No	no	1
+	animalResearch	Yes	yes	0
+	animalResearch	No	no	1
+	personalDataIncluded	Yes	yes	0
+	personalDataIncluded	No	no	1
+	personalDataIncluded	Unknown	unknown	2
+	sensitiveData	Yes	yes	0
+	sensitiveData	No	no	1
+	sensitiveData	Unknown	unknown	2
+	specialCategoryData	Yes	yes	0
+	specialCategoryData	No	no	1
+	specialCategoryData	Unknown	unknown	2
+	gdprCompliance	Compliant	compliant	0
+	gdprCompliance	Not Applicable	na	1
+	gdprCompliance	Unknown	unknown	2
+	legalBasisForProcessing	Consent	consent	0
+	legalBasisForProcessing	Contract	contract	1
+	legalBasisForProcessing	Legal Obligation	legalobligation	2
+	legalBasisForProcessing	Vital Interests	vitalinterests	3
+	legalBasisForProcessing	Public Task	publictask	4
+	legalBasisForProcessing	Legitimate Interests	legitimateinterests	5
+	legalBasisForProcessing	Not Applicable	na	6
+	crossBorderTransfer	Yes	yes	0
+	crossBorderTransfer	No	no	1
+	crossBorderTransfer	Unknown	unknown	2
+	dataAccessLevel	Open	open	0
+	dataAccessLevel	Shared	shared	1
+	dataAccessLevel	Closed	closed	2
+	embargoApplied	Yes	yes	0
+	embargoApplied	No	no	1
+	backupFrequency	Real-time	realtime	0
+	backupFrequency	Daily	daily	1
+	backupFrequency	Weekly	weekly	2
+	backupFrequency	Monthly	monthly	3
+	backupFrequency	Other	other	4
+	checksumVerification	MD5	md5	0
+	checksumVerification	SHA-256	sha256	1
+	checksumVerification	SHA-512	sha512	2
+	checksumVerification	None	none	3
+	checksumVerification	Other	other	4
+	repositoryCertification	CoreTrustSeal	coretrustseal	0
+	repositoryCertification	ISO 16363	iso16363	1
+	repositoryCertification	DIN 31644	din31644	2
+	repositoryCertification	WDS	wds	3
+	repositoryCertification	TRAC	trac	4
+	repositoryCertification	None	none	5
+	repositoryCertification	Other	other	6
+	persistentIdentifierScheme	DOI	doi	0
+	persistentIdentifierScheme	Handle	handle	1
+	persistentIdentifierScheme	ARK	ark	2
+	persistentIdentifierScheme	PURL	purl	3
+	persistentIdentifierScheme	URN	urn	4
+	persistentIdentifierScheme	Other	other	5
+	relatedResourceRelationType	IsCitedBy	IsCitedBy	0
+	relatedResourceRelationType	Cites	Cites	1
+	relatedResourceRelationType	IsSupplementTo	IsSupplementTo	2
+	relatedResourceRelationType	IsSupplementedBy	IsSupplementedBy	3
+	relatedResourceRelationType	IsDerivedFrom	IsDerivedFrom	4
+	relatedResourceRelationType	IsSourceOf	IsSourceOf	5
+	relatedResourceRelationType	IsPartOf	IsPartOf	6
+	relatedResourceRelationType	HasPart	HasPart	7
+	relatedResourceRelationType	IsDocumentedBy	IsDocumentedBy	8
+	relatedResourceRelationType	Documents	Documents	9
+	relatedResourceRelationType	IsNewVersionOf	IsNewVersionOf	10
+	relatedResourceRelationType	IsPreviousVersionOf	IsPreviousVersionOf	11
+	relatedResourceRelationType	Other	Other	12
+	dmpStatus	Draft	draft	0
+	dmpStatus	Active	active	1
+	dmpStatus	Reviewed	reviewed	2
+	dmpStatus	Archived	archived	3
+	dmpVisibility	Public	public	0
+	dmpVisibility	Private	private	1
+	dmpVisibility	Restricted	restricted	2
+	costCurrencyCode	USD - US Dollar	USD	0
+	costCurrencyCode	EUR - Euro	EUR	1
+	costCurrencyCode	GBP - Pound Sterling	GBP	2
+	costCurrencyCode	BRL - Brazilian Real	BRL	3
+	costCurrencyCode	CAD - Canadian Dollar	CAD	4
+	costCurrencyCode	AUD - Australian Dollar	AUD	5
+	costCurrencyCode	CHF - Swiss Franc	CHF	6
+	costCurrencyCode	JPY - Yen	JPY	7
+	costCurrencyCode	CNY - Yuan Renminbi	CNY	8
+	costCurrencyCode	AED - UAE Dirham	AED	9
+	costCurrencyCode	AFN - Afghani	AFN	10
+	costCurrencyCode	ALL - Lek	ALL	11
+	costCurrencyCode	AMD - Armenian Dram	AMD	12
+	costCurrencyCode	AOA - Kwanza	AOA	13
+	costCurrencyCode	ARS - Argentine Peso	ARS	14
+	costCurrencyCode	AWG - Aruban Florin	AWG	15
+	costCurrencyCode	AZN - Azerbaijan Manat	AZN	16
+	costCurrencyCode	BAM - Convertible Mark	BAM	17
+	costCurrencyCode	BBD - Barbados Dollar	BBD	18
+	costCurrencyCode	BDT - Taka	BDT	19
+	costCurrencyCode	BHD - Bahraini Dinar	BHD	20
+	costCurrencyCode	BIF - Burundi Franc	BIF	21
+	costCurrencyCode	BMD - Bermudian Dollar	BMD	22
+	costCurrencyCode	BND - Brunei Dollar	BND	23
+	costCurrencyCode	BOB - Boliviano	BOB	24
+	costCurrencyCode	BOV - Mvdol	BOV	25
+	costCurrencyCode	BSD - Bahamian Dollar	BSD	26
+	costCurrencyCode	BTN - Ngultrum	BTN	27
+	costCurrencyCode	BWP - Pula	BWP	28
+	costCurrencyCode	BYN - Belarusian Ruble	BYN	29
+	costCurrencyCode	BZD - Belize Dollar	BZD	30
+	costCurrencyCode	CDF - Congolese Franc	CDF	31
+	costCurrencyCode	CHE - WIR Euro	CHE	32
+	costCurrencyCode	CHW - WIR Franc	CHW	33
+	costCurrencyCode	CLF - Unidad de Fomento	CLF	34
+	costCurrencyCode	CLP - Chilean Peso	CLP	35
+	costCurrencyCode	COP - Colombian Peso	COP	36
+	costCurrencyCode	COU - Unidad de Valor Real	COU	37
+	costCurrencyCode	CRC - Costa Rican Colon	CRC	38
+	costCurrencyCode	CUP - Cuban Peso	CUP	39
+	costCurrencyCode	CVE - Cabo Verde Escudo	CVE	40
+	costCurrencyCode	CZK - Czech Koruna	CZK	41
+	costCurrencyCode	DJF - Djibouti Franc	DJF	42
+	costCurrencyCode	DKK - Danish Krone	DKK	43
+	costCurrencyCode	DOP - Dominican Peso	DOP	44
+	costCurrencyCode	DZD - Algerian Dinar	DZD	45
+	costCurrencyCode	EGP - Egyptian Pound	EGP	46
+	costCurrencyCode	ERN - Nakfa	ERN	47
+	costCurrencyCode	ETB - Ethiopian Birr	ETB	48
+	costCurrencyCode	FJD - Fiji Dollar	FJD	49
+	costCurrencyCode	FKP - Falkland Islands Pound	FKP	50
+	costCurrencyCode	GEL - Lari	GEL	51
+	costCurrencyCode	GHS - Ghana Cedi	GHS	52
+	costCurrencyCode	GIP - Gibraltar Pound	GIP	53
+	costCurrencyCode	GMD - Dalasi	GMD	54
+	costCurrencyCode	GNF - Guinean Franc	GNF	55
+	costCurrencyCode	GTQ - Quetzal	GTQ	56
+	costCurrencyCode	GYD - Guyana Dollar	GYD	57
+	costCurrencyCode	HKD - Hong Kong Dollar	HKD	58
+	costCurrencyCode	HNL - Lempira	HNL	59
+	costCurrencyCode	HTG - Gourde	HTG	60
+	costCurrencyCode	HUF - Forint	HUF	61
+	costCurrencyCode	IDR - Rupiah	IDR	62
+	costCurrencyCode	ILS - New Israeli Sheqel	ILS	63
+	costCurrencyCode	INR - Indian Rupee	INR	64
+	costCurrencyCode	IQD - Iraqi Dinar	IQD	65
+	costCurrencyCode	IRR - Iranian Rial	IRR	66
+	costCurrencyCode	ISK - Iceland Krona	ISK	67
+	costCurrencyCode	JMD - Jamaican Dollar	JMD	68
+	costCurrencyCode	JOD - Jordanian Dinar	JOD	69
+	costCurrencyCode	KES - Kenyan Shilling	KES	70
+	costCurrencyCode	KGS - Som	KGS	71
+	costCurrencyCode	KHR - Riel	KHR	72
+	costCurrencyCode	KMF - Comorian Franc	KMF	73
+	costCurrencyCode	KPW - North Korean Won	KPW	74
+	costCurrencyCode	KRW - Won	KRW	75
+	costCurrencyCode	KWD - Kuwaiti Dinar	KWD	76
+	costCurrencyCode	KYD - Cayman Islands Dollar	KYD	77
+	costCurrencyCode	KZT - Tenge	KZT	78
+	costCurrencyCode	LAK - Lao Kip	LAK	79
+	costCurrencyCode	LBP - Lebanese Pound	LBP	80
+	costCurrencyCode	LKR - Sri Lanka Rupee	LKR	81
+	costCurrencyCode	LRD - Liberian Dollar	LRD	82
+	costCurrencyCode	LSL - Loti	LSL	83
+	costCurrencyCode	LYD - Libyan Dinar	LYD	84
+	costCurrencyCode	MAD - Moroccan Dirham	MAD	85
+	costCurrencyCode	MDL - Moldovan Leu	MDL	86
+	costCurrencyCode	MGA - Malagasy Ariary	MGA	87
+	costCurrencyCode	MKD - Denar	MKD	88
+	costCurrencyCode	MMK - Kyat	MMK	89
+	costCurrencyCode	MNT - Tugrik	MNT	90
+	costCurrencyCode	MOP - Pataca	MOP	91
+	costCurrencyCode	MRU - Ouguiya	MRU	92
+	costCurrencyCode	MUR - Mauritius Rupee	MUR	93
+	costCurrencyCode	MVR - Rufiyaa	MVR	94
+	costCurrencyCode	MWK - Malawi Kwacha	MWK	95
+	costCurrencyCode	MXN - Mexican Peso	MXN	96
+	costCurrencyCode	MXV - Mexican Unidad de Inversion (UDI)	MXV	97
+	costCurrencyCode	MYR - Malaysian Ringgit	MYR	98
+	costCurrencyCode	MZN - Mozambique Metical	MZN	99
+	costCurrencyCode	NAD - Namibia Dollar	NAD	100
+	costCurrencyCode	NGN - Naira	NGN	101
+	costCurrencyCode	NIO - Cordoba Oro	NIO	102
+	costCurrencyCode	NOK - Norwegian Krone	NOK	103
+	costCurrencyCode	NPR - Nepalese Rupee	NPR	104
+	costCurrencyCode	NZD - New Zealand Dollar	NZD	105
+	costCurrencyCode	OMR - Rial Omani	OMR	106
+	costCurrencyCode	PAB - Balboa	PAB	107
+	costCurrencyCode	PEN - Sol	PEN	108
+	costCurrencyCode	PGK - Kina	PGK	109
+	costCurrencyCode	PHP - Philippine Peso	PHP	110
+	costCurrencyCode	PKR - Pakistan Rupee	PKR	111
+	costCurrencyCode	PLN - Zloty	PLN	112
+	costCurrencyCode	PYG - Guarani	PYG	113
+	costCurrencyCode	QAR - Qatari Rial	QAR	114
+	costCurrencyCode	RON - Romanian Leu	RON	115
+	costCurrencyCode	RSD - Serbian Dinar	RSD	116
+	costCurrencyCode	RUB - Russian Ruble	RUB	117
+	costCurrencyCode	RWF - Rwanda Franc	RWF	118
+	costCurrencyCode	SAR - Saudi Riyal	SAR	119
+	costCurrencyCode	SBD - Solomon Islands Dollar	SBD	120
+	costCurrencyCode	SCR - Seychelles Rupee	SCR	121
+	costCurrencyCode	SDG - Sudanese Pound	SDG	122
+	costCurrencyCode	SEK - Swedish Krona	SEK	123
+	costCurrencyCode	SGD - Singapore Dollar	SGD	124
+	costCurrencyCode	SHP - Saint Helena Pound	SHP	125
+	costCurrencyCode	SLE - Leone	SLE	126
+	costCurrencyCode	SOS - Somali Shilling	SOS	127
+	costCurrencyCode	SRD - Surinam Dollar	SRD	128
+	costCurrencyCode	SSP - South Sudanese Pound	SSP	129
+	costCurrencyCode	STN - Dobra	STN	130
+	costCurrencyCode	SVC - El Salvador Colon	SVC	131
+	costCurrencyCode	SYP - Syrian Pound	SYP	132
+	costCurrencyCode	SZL - Lilangeni	SZL	133
+	costCurrencyCode	THB - Baht	THB	134
+	costCurrencyCode	TJS - Somoni	TJS	135
+	costCurrencyCode	TMT - Turkmenistan New Manat	TMT	136
+	costCurrencyCode	TND - Tunisian Dinar	TND	137
+	costCurrencyCode	TOP - Pa’anga	TOP	138
+	costCurrencyCode	TRY - Turkish Lira	TRY	139
+	costCurrencyCode	TTD - Trinidad and Tobago Dollar	TTD	140
+	costCurrencyCode	TWD - New Taiwan Dollar	TWD	141
+	costCurrencyCode	TZS - Tanzanian Shilling	TZS	142
+	costCurrencyCode	UAH - Hryvnia	UAH	143
+	costCurrencyCode	UGX - Uganda Shilling	UGX	144
+	costCurrencyCode	USN - US Dollar (Next day)	USN	145
+	costCurrencyCode	UYI - Uruguay Peso en Unidades Indexadas (UI)	UYI	146
+	costCurrencyCode	UYU - Peso Uruguayo	UYU	147
+	costCurrencyCode	UYW - Unidad Previsional	UYW	148
+	costCurrencyCode	UZS - Uzbekistan Sum	UZS	149
+	costCurrencyCode	VED - Bolívar Soberano	VED	150
+	costCurrencyCode	VES - Bolívar Soberano	VES	151
+	costCurrencyCode	VND - Dong	VND	152
+	costCurrencyCode	VUV - Vatu	VUV	153
+	costCurrencyCode	WST - Tala	WST	154
+	costCurrencyCode	XAD - Arab Accounting Dinar	XAD	155
+	costCurrencyCode	XAF - CFA Franc BEAC	XAF	156
+	costCurrencyCode	XAG - Silver	XAG	157
+	costCurrencyCode	XAU - Gold	XAU	158
+	costCurrencyCode	XBA - Bond Markets Unit European Composite Unit (EURCO)	XBA	159
+	costCurrencyCode	XBB - Bond Markets Unit European Monetary Unit (E.M.U.-6)	XBB	160
+	costCurrencyCode	XBC - Bond Markets Unit European Unit of Account 9 (E.U.A.-9)	XBC	161
+	costCurrencyCode	XBD - Bond Markets Unit European Unit of Account 17 (E.U.A.-17)	XBD	162
+	costCurrencyCode	XCD - East Caribbean Dollar	XCD	163
+	costCurrencyCode	XCG - Caribbean Guilder	XCG	164
+	costCurrencyCode	XDR - SDR (Special Drawing Right)	XDR	165
+	costCurrencyCode	XOF - CFA Franc BCEAO	XOF	166
+	costCurrencyCode	XPD - Palladium	XPD	167
+	costCurrencyCode	XPF - CFP Franc	XPF	168
+	costCurrencyCode	XPT - Platinum	XPT	169
+	costCurrencyCode	XSU - Sucre	XSU	170
+	costCurrencyCode	XTS - Codes specifically reserved for testing purposes	XTS	171
+	costCurrencyCode	XUA - ADB Unit of Account	XUA	172
+	costCurrencyCode	XXX - The codes assigned for transactions where no currency is involved	XXX	173
+	costCurrencyCode	YER - Yemeni Rial	YER	174
+	costCurrencyCode	ZAR - Rand	ZAR	175
+	costCurrencyCode	ZMW - Zambian Kwacha	ZMW	176
+	costCurrencyCode	ZWG - Zimbabwe Gold	ZWG	177

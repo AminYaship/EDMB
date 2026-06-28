@@ -1,0 +1,98 @@
+# 02 — Install Dataverse in Docker
+
+This brings up a local Harvard Dataverse instance using the **official upstream
+container stack** (the "Demo or Evaluation" setup). The commands below are
+verified against Dataverse 6.10.x; if the upstream guide has moved on, cross-check
+the current [Container Guide → Demo or Evaluation](https://guides.dataverse.org/en/latest/container/running/demo.html).
+
+## Step 1 — Get the compose file
+
+The stack is driven by a single `compose.yml` published by the Dataverse
+project. Download it from the upstream guide (the **"Quickstart"** section links
+the current `compose.yml`):
+
+> <https://guides.dataverse.org/en/latest/container/running/demo.html>
+
+Put it in a working directory of its own, e.g.:
+
+```bash
+mkdir dataverse-demo && cd dataverse-demo
+# place the downloaded compose.yml here
+```
+
+> Keep this directory: the EDMB setup script (step 03) expects to be run from
+> here, because it touches `./docker-dev-volumes/solr/...`.
+
+## Step 2 — First run (quickstart)
+
+```bash
+docker compose up
+```
+
+This pulls the images (`gdcc/dataverse:latest`, `gdcc/configbaker:latest`,
+PostgreSQL, Solr, an SMTP stub) and bootstraps the installation. Watch the logs;
+the **`bootstrap`** container runs once and then exits — that's expected and
+signals setup is complete.
+
+Then visit **<http://localhost:8080>** and log in:
+
+- username: `dataverseAdmin`
+- password: `admin1`
+
+If you can log in, the install works. Verify the version any time at
+<http://localhost:8080/api/info/version>.
+
+### Stopping / starting / resetting
+
+- **Stop:** `Ctrl-C` in the terminal running compose (data persists in `./data`).
+- **Start again:** `docker compose up`.
+- **Start fresh (wipe DB):** stop the containers, delete the `data` directory,
+  then `docker compose up` again.
+- **Tear down completely:** `docker compose down` (optionally also remove `data`
+  and `docker-dev-volumes`).
+
+## Step 3 — (Recommended) switch to the "demo" persona
+
+The default `dev` persona bootstraps with admin APIs wide open (`--insecure`).
+For anything beyond a throwaway test, switch to the more secure `demo` persona.
+In `compose.yml`, find the `bootstrap` service:
+
+```yaml
+bootstrap:
+  container_name: "bootstrap"
+  image: gdcc/configbaker:latest
+  restart: "no"
+  environment:
+    - TIMEOUT=3m
+  command:
+    - bootstrap.sh
+    - dev
+    #- demo
+  #volumes:
+  #  - ./demo:/scripts/bootstrap/demo
+  networks:
+    - dataverse
+```
+
+- comment out `- dev` and uncomment `#- demo`
+- uncomment the two `volumes` lines
+- create a `demo/` directory and copy the upstream `init.sh` into it
+- **change the unblock key** inside `init.sh` from `unblockme` to something
+  private (it gates the admin API after bootstrap)
+
+Then start fresh (delete `data`, `docker compose up`).
+
+> **Trade-off that matters for step 03.** The `demo` persona blocks the admin
+> API. The EDMB block is loaded via `POST /api/admin/datasetfield/load`, which
+> is an admin endpoint — so with the `demo` persona you must append
+> `?unblock-key=YOURKEY` to admin calls. The default `dev` persona needs no key.
+> The setup script in step 03 uses the no-key form; if you're on `demo`, see the
+> note there.
+
+## Smoke test
+
+Before adding EDMB, confirm the basics work: log in, publish the root
+collection, create a collection, create a dataset, upload a file, publish it. If
+all of that works, proceed.
+
+Next: [`03-setup-edmb.md`](03-setup-edmb.md)

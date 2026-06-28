@@ -1,0 +1,46 @@
+# 01 — Prerequisites
+
+Before you start, make sure the following are installed and working.
+
+## Hardware
+
+- **~8 GB RAM** free (the upstream guide's recommendation if not much else is
+  running). The stack runs Dataverse, PostgreSQL, Solr, an SMTP stub, and a
+  one-shot bootstrap container.
+- A few GB of free disk for images and the `data` / `docker-dev-volumes`
+  directories.
+
+## Software
+
+| Tool | Why | Check |
+|------|-----|-------|
+| **Docker Engine** + **Compose plugin** | runs the whole stack | `docker --version` and `docker compose version` |
+| **curl** | talks to the Dataverse admin API and Solr | `curl --version` |
+| **Python 3.9+** | runs the maDMP validation script | `python3 --version` |
+| **git** | clone this repo | `git --version` |
+
+Platform: macOS, Linux, or Windows. Windows support in the upstream container
+tooling is marked experimental — Linux/macOS is the smoother path.
+
+> Use the **Compose v2** syntax: `docker compose ...` (a subcommand), not the
+> legacy `docker-compose` binary. All commands in these docs assume v2.
+
+## Python dependency
+
+The validation script needs `jsonschema`:
+
+```bash
+pip install jsonschema
+```
+
+(You may prefer a virtual environment: `python3 -m venv .venv && source .venv/bin/activate && pip install jsonschema`.)
+
+## A note on the schema file
+
+The validation step checks the serialized output against the **official RDA DMP
+Common Standard schema**, `maDMP-schema-1.1.json`. That file is **not** bundled
+here (it belongs to the RDA DMP Common Standard project and carries its own
+license). You will download it in step 04. See `validation/README.md` for the
+source.
+
+Next: [`02-install-dataverse-docker.md`](02-install-dataverse-docker.md)

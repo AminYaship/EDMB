@@ -1,0 +1,124 @@
+# 03 — Set up the EDMB block
+
+With Dataverse running (from [02](02-install-dataverse-docker.md)), this loads
+the `edmb` metadata block, refreshes Solr so the new fields are searchable, and
+enables the block for a collection.
+
+> **Run from your `compose.yml` directory.** The Solr step rewrites
+> `./docker-dev-volumes/solr/data/data/collection1/conf/schema.xml`, a path
+> relative to where you launched the stack. Clone this repo somewhere and point
+> the script at the TSV, or copy `metadata-block/edmb.tsv` next to your
+> `compose.yml`.
+
+> **One-way operation.** Dataverse currently has no supported way to *preview*
+> or *delete* a metadata block. Only load blocks into a throwaway instance you're
+> happy to reset.
+
+## The fast path: the helper script
+
+From your `compose.yml` directory, with the stack up and `bootstrap` exited:
+
+```bash
+/path/to/this/repo/scripts/load-edmb.sh /path/to/this/repo/metadata-block/edmb.tsv root
+```
+
+It runs all four steps below in order (load → back up Solr schema → update
+schema → reload core) and prints next steps. If you're on the **`demo`**
+persona, see "Using the demo persona" at the bottom first.
+
+## The manual path (what the script does)
+
+### Step 1 — Load the block
+
+```bash
+curl http://localhost:8080/api/admin/datasetfield/load \
+  -H "Content-type: text/tab-separated-values" \
+  -X POST --upload-file metadata-block/edmb.tsv
+```
+
+A successful load returns JSON describing the datasetfields that were created.
+
+### Step 2 — Back up the current Solr schema
+
+```bash
+cp docker-dev-volumes/solr/data/data/collection1/conf/schema.xml \
+   docker-dev-volumes/solr/data/data/collection1/conf/schema.xml.orig
+```
+
+### Step 3 — Update the Solr schema with Dataverse's field list
+
+Dataverse generates the full Solr field list (now including the EDMB fields);
+pipe it through configbaker's `update-fields.sh` to rewrite `schema.xml`:
+
+```bash
+curl http://localhost:8080/api/admin/index/solr/schema \
+  | docker run -i --rm -v ./docker-dev-volumes/solr/data:/var/solr \
+      gdcc/configbaker:latest \
+      update-fields.sh /var/solr/data/collection1/conf/schema.xml
+```
+
+### Step 4 — Reload the Solr core
+
+```bash
+curl "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1"
+```
+
+Confirm the new fields are present:
+
+```bash
+curl http://localhost:8983/solr/collection1/schema/fields
+# diff against the backup to see exactly what was added:
+diff docker-dev-volumes/solr/data/data/collection1/conf/schema.xml.orig \
+     docker-dev-volumes/solr/data/data/collection1/conf/schema.xml
+```
+
+## Step 5 — Enable EDMB for a collection
+
+Loading a block makes Dataverse *aware* of it; you still have to switch it on
+for a collection.
+
+**In the UI:** go to your collection → **Edit** → **General Information** →
+**Metadata Fields**, check **EDMB** (it appears as its own block), and save.
+
+**Or via API** (set the block list for the `root` collection; include `citation`
+so you don't disable it):
+
+```bash
+curl -X POST -H "Content-type:application/json" \
+  "http://localhost:8080/api/dataverses/root/metadatablocks" \
+  -d '["citation","edmb"]'
+```
+
+## Step 6 — Verify in a dataset
+
+Create a new dataset (or edit an existing one) → **Edit → Metadata**. You should
+see a collapsible **EDMB** section with the ten category groups (Ethics, Privacy
+and Compliance, Access and Sharing, Preservation, FAIR and Reuse, DMP Lifecycle,
+NIH Data Sharing, Cost, Expected Data Types, Related Resources). Enter a few
+values, save, and confirm they persist and appear in the dataset's native JSON
+export:
+
+```bash
+# replace with your dataset's persistent id
+curl "http://localhost:8080/api/datasets/:persistentId/?persistentId=doi:..." \
+  | python3 -m json.tool
+```
+
+The EDMB fields appear under `metadataBlocks.edmb` — this is the JSON the
+validation step (04) consumes.
+
+## Using the demo persona
+
+If you switched to the `demo` persona in step 02, the admin API is blocked; add
+your unblock key to the admin calls (steps 1 and 3 above):
+
+```bash
+curl "http://localhost:8080/api/admin/datasetfield/load?unblock-key=YOURKEY" \
+  -H "Content-type: text/tab-separated-values" \
+  -X POST --upload-file metadata-block/edmb.tsv
+```
+
+The Solr core-reload (`:8983`) and the per-collection enable call are not admin
+endpoints and need no key.
+
+Next: [`04-validation.md`](04-validation.md)
